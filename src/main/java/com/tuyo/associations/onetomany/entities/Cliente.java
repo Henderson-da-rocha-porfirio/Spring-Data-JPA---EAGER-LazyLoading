@@ -13,11 +13,11 @@ public class Cliente {
 	private String name; 					// Definimos a associação mas o hibernate ou JPA ainda não sabe dessa associação.
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,fetch=FetchType.EAGER)   // Daí por isso colocar a @OneToMany anotação do JPA para fazê-los saber da associação.
 	private Set<NumeroTelefone> numbers; 	// Também precisamos dizer à eles quem quer o mapeamento: NumeroTelefone que tem seu próprio mapeamento.
-																						// "cliente" é quem diz que a Primary Key está no Cliete e ele próprio salva o mapeamento,
-																						//  e dessa maneira mapeamos com sucesso Cliente para o NumeroTelefone.
+						// "cliente" é quem diz que a Primary Key está no Cliete e ele próprio salva o mapeamento,
+						//  e dessa maneira mapeamos com sucesso Cliente para o NumeroTelefone.
 	public long getId() {		// cascade é utilizado para realizar o efeito cascata (útil para CRUD também neste contexto
-		return id;																		// ALL = é usado para vários tipos.
-	}																					// fetch=FetchType.EAGER é passado no Pai e faz referência ao Lazy que está no objeto Filho.
+		return id;		// ALL = é usado para vários tipos.
+	}				// fetch=FetchType.EAGER é passado no Pai e faz referência ao Lazy que está no objeto Filho.
 
 	public void setId(long id) {
 		this.id = id;
