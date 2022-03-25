@@ -8,14 +8,14 @@ import java.util.Set;
 public class Cliente {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO) 									// Como este campo é auto-incremento ou serial(no postgresql) nós usaremos um @GeneratedValue e AUTO em strategy.
+	@GeneratedValue(strategy = GenerationType.AUTO) 	// Como este campo é auto-incremento ou serial(no postgresql) nós usaremos um @GeneratedValue e AUTO em strategy.
 	private long id;
-	private String name; 																// Definimos a associação mas o hibernate ou JPA ainda não sabe dessa associação.
+	private String name; 					// Definimos a associação mas o hibernate ou JPA ainda não sabe dessa associação.
 	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL,fetch=FetchType.EAGER)   // Daí por isso colocar a @OneToMany anotação do JPA para fazê-los saber da associação.
-	private Set<NumeroTelefone> numbers; 												// Também precisamos dizer à eles quem quer o mapeamento: NumeroTelefone que tem seu próprio mapeamento.
+	private Set<NumeroTelefone> numbers; 	// Também precisamos dizer à eles quem quer o mapeamento: NumeroTelefone que tem seu próprio mapeamento.
 																						// "cliente" é quem diz que a Primary Key está no Cliete e ele próprio salva o mapeamento,
 																						//  e dessa maneira mapeamos com sucesso Cliente para o NumeroTelefone.
-	public long getId() {																// cascade é utilizado para realizar o efeito cascata (útil para CRUD também neste contexto
+	public long getId() {		// cascade é utilizado para realizar o efeito cascata (útil para CRUD também neste contexto
 		return id;																		// ALL = é usado para vários tipos.
 	}																					// fetch=FetchType.EAGER é passado no Pai e faz referência ao Lazy que está no objeto Filho.
 
